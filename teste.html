@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>teste</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        body{
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        header{
+            width: 100%;
+            min-width: 300px;
+        }
+        .topo{
+            width: 100%;
+            min-width: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            background-color: black;
+        }
+        .topo button{
+            width: 120px;
+            height: 30px;
+            background-color: black;
+            color: white;
+            border: none;
+        }
+        .corpo{
+            max-width: 1200px;
+            min-width: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        }
+        .conteiner-pizzas{
+            width: 60%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+        .pizza{
+            max-width: 200px;
+            min-width: 200px;
+            height: 300px;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid #666;
+            transition: 0.3s;
+        }
+        .pizza:hover{
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+        }
+        .pizza button{
+            width: 100%;
+            height: 30px;
+            background-color: black;
+            color: white;
+            border: 1px solid black;
+        }
+        .pizza button:hover{
+            background-color: white;
+            color: black;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+        #modalPersonalizarPizza{
+            background-color: none;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+        }
+        .modalPizza{
+            width: 800px;
+            height: 400px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+        .personalizar{
+            width: 50%;
+            height: 100%;
+            margin-left: 50px;
+            gap: 0px;
+        }
+        
+        .personalizar h5{
+            margin: 0;
+        }
+        .personalizar select{
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        .complementos{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 5px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .obs{
+            width: 100%;
+            background-color: aquamarine;
+        }
+        .obs input{
+            height: 30px;
+            width: 100%;
+        }
+        .botaoPersonalizar{
+            width: 100%;
+            display: flex;
+            justify-content: end;
+        }
+        .personalizar button{
+            width: 50%;
+            height: 30px;
+            margin-top: 20px;
+            background-color: black;
+            border: 1px solid black;
+            color: white;
+            transition: 0.3s;
+        }
+        .botaoPersonalizar button:hover{
+            background-color: transparent;
+            color: black;
+            border: 1px solid black;
+            transform: scale(1.05);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="topo">
+            <div class="logo"></div>
+            <div class="botoes-nav">
+                <button>teste</button>
+                <button>teste</button>
+                <button>teste</button>
+            </div>
+            <div class="menu"></div>
+        </div>
+    </header>
+    <main>
+        <div class="corpo">
+            <div class="conteiner-pizzas">
+                <div class="pizza">
+                    <h3 class="item">Pizza 1</h3>
+                    <p class="preco">R$ 89,99</p>
+                    <button class="botaoSelect" onclick="selecionarPizza('Pizza 1', 'R$ 89,99')">Selecionar Pizza</button>
+                </div>
+                <div class="pizza">
+                    <h3 class="item">Pizza 2</h3>
+                    <p class="preco">R$ 69,99</p>
+                    <button class="botaoSelect" onclick="selecionarPizza('Pizza 2', 'R$ 69,99')">Selecionar Pizza</button>
+                </div>
+                <div class="pizza">
+                    <h3 class="item">Pizza 1</h3>
+                    <p class="preco">R$ 89,99</p>
+                    <button>Selecionar Pizza</button>
+                </div>
+                <div class="pizza">
+                    <h3 class="item">Pizza 1</h3>
+                    <p class="preco">R$ 89,99</p>
+                    <button>Selecionar Pizza</button>
+                </div>
+                <div class="pizza">
+                    <h3 class="item">Pizza 1</h3>
+                    <p class="preco">R$ 89,99</p>
+                    <button>Selecionar Pizza</button>
+                </div>
+                <div class="pizza">
+                    <h3 class="item">Pizza 1</h3>
+                    <p class="preco">R$ 89,99</p>
+                    <button>Selecionar Pizza</button>
+                </div>
+            </div>
+            <div class="carrinho"></div>
+        </div>
+        <dialog id="modalPersonalizarPizza">
+            <div class="modalPizza">
+                <div class="pizza">
+                    <h3 id="itemModal"></h3>
+                    <p id="precoModal">9</p>
+                    <button id="sairModal">Sair</button>
+                </div>
+                <div class="personalizar">
+                    <h4>Personalize sua Pizza</h4>
+                    <h5>Tamanho</h5>
+                    <select name="tamanho" id="tamanho">
+                        <option>Selecione o tamanho</option>
+                        <option>Pequena</option>
+                        <option>Média</option>
+                        <option>Grande</option>
+                    </select>
+                    <h5>Borda</h5>
+                    <select name="borda" id="borda">
+                        <option>Selecione o tipo de borda</option>
+                        <option>Pequena</option>
+                        <option>Média</option>
+                        <option>Grande</option>
+                    </select>
+                    <h5>Complementos Extras</h5>
+                    <div class="complementos">
+                        <label for="">Bacon</label>
+                        <input type="checkbox" id="complemento" >
+                        <label for="">Calabresa</label>
+                        <input type="checkbox" id="complemento">
+                        <label for="">Cebola</label>
+                        <input type="checkbox" id="complemento">
+                        <label for="">Queijo</label>
+                        <input type="checkbox" id="complemento">
+                    </div>
+                    <h5>Bebidas</h5>
+                    <select name="bebida" id="bebida">
+                        <option>Selecione a bebida</option>
+                        <option>Coca-cola</option>
+                        <option>Guaraná</option>
+                        <option>Fanta Uva</option>
+                        <option>Fanta Laranja</option>
+                    </select>
+                    <h5>Observações</h5>
+                    <div class="obs">
+                        <input type="text" id="obs">
+                    </div>
+                    <div class="botaoPersonalizar">
+                        <button>Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+            </div>
+        </dialog>
+    </main>
+    <script>
+        const modalPersonalizarPizza = document.querySelector("#modalPersonalizarPizza")
+        const buttonOpenModal = document.getElementsByClassName("botaoSelect")
+        const buttonSairModal = document.querySelector("#sairModal")
+
+        function selecionarPizza(item, preco){
+            document.getElementById("itemModal").textContent = item
+            document.getElementById("precoModal").textContent = preco
+            modalPersonalizarPizza.showModal()
+        }
+
+        window.addEventListener("click", (e) =>{
+            if(e.target === modalPersonalizarPizza){
+                modalPersonalizarPizza.close()
+            }
+        })
+        buttonSairModal.onclick = function(){
+            modalPersonalizarPizza.close()
+        }
+
+    
+
+
+    </script>
+    
+</body>
+</html>
